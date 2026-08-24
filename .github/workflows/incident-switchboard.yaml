@@ -1,0 +1,48 @@
+name: Incident Switchboard
+
+on:
+    push:
+        branches:
+            - main
+
+    pull_request:
+        branches:
+            - main
+
+    workflow_dispatch:
+        inputs:
+            severity:
+                description: "Incident severity"
+                required: true
+                default: low
+                type: choice
+                options:
+                  - low
+                  - medium
+                  - high
+
+            deep_scan:
+                description: "Run deep scan"
+                required: false
+                default: false
+                type: boolean
+
+            skip_tests:
+                description: "Skip tests"
+                required: false
+                default: false
+                type: boolean
+                
+            reason:
+                description: "Reason for running the workflow"
+                required: false
+                type: string
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Triage incident
+        run: |
+          echo "Triage started"
