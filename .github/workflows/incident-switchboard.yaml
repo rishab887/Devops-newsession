@@ -49,3 +49,16 @@ jobs:
           echo "Ref: ${{ github.ref }}"
           echo "Actor: ${{ github.actor }}"
           echo "Run number: ${{ github.run_number }}"
+
+      - name: Show manual details
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          echo "Severity: ${{ inputs.severity }}"
+          echo "Deep scan: ${{ inputs.deep_scan }}"
+          echo "Skip tests: ${{ inputs.skip_tests }}"
+          echo "Reason: ${{ inputs.reason }}"
+
+      - name: Show automatic details
+        if: github.event_name != 'workflow_dispatch'
+        run: |
+          echo "This run was automatic and no reason was supplied."
