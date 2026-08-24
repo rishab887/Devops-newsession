@@ -45,4 +45,7 @@ jobs:
     steps:
       - name: Triage incident
         run: |
-          echo "Triage started"
+          echo "Event: ${{ github.event_name }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Run number: ${{ github.run_number }}"
