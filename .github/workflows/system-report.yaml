@@ -10,7 +10,7 @@ jobs:
             - name: show system information
               run: |
                 echo "=== OS ==="
-                grep "^PRETTY_NAME /etc/os-release
+                grep "^PRETTY_NAME=" /etc/os-release
                 echo "=== kernel ==="
                 uname -r
                 echo "=== Free disk space ==="
@@ -35,11 +35,11 @@ jobs:
               run: |
                  cat > report.json <<"EOF"
                  {
-                   "runner": "ubuntu"
-                   "language": "python"
-                   "purpost": "system-report"
+                   "runner": "ubuntu",
+                   "language": "python",
+                   "purpose": "system-report"
                  }
-                   EOF
+                 EOF
             - name: Read json value
               run: |
                 jq -r '.runner' report.json
